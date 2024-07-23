@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css?family=Bona Nova SC');
+@keyframes slide-in {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .animate-slide-in {
+    animation: slide-in 2s ease-out forwards;
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 2s 3s ease-in forwards; /* 2s duration and 3s delay */
+    opacity: 0; /* Ensure the element is hidden initially */
+  }
+  .text1{
+    font-family: 'Bona Nova SC', serif;
+  }
