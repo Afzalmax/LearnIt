@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { usePost } from '../hooks/usePost'; 
-import {Link} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import Navbar from './Navbar';
 const Addmaterials = () => {
+    const navigate = useNavigate();
     const { post } = usePost();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -12,7 +13,9 @@ const Addmaterials = () => {
         e.preventDefault();
         if (image) {
             const result = await post(title, description, image);
+            
             console.log(result);
+            navigate('/');
         } else {
             console.log("Image is required");
         }
@@ -21,7 +24,7 @@ const Addmaterials = () => {
     return (
       <>
       <Navbar/>
-      <div className="h-[100vh] items-center flex justify-center px-5 lg:px-0 bg-green-900">
+      <div className="h-[100vh] items-center flex justify-center px-5 lg:px-0 bg-peach">
 
       <div className="max-w-screen-xl bg-white border shadow lg:rounded-lg flex justify-center flex-1">
         <section class="bg-white-900 dark:bg-gray-900">
@@ -45,12 +48,12 @@ const Addmaterials = () => {
                 onChange={(e) => setImage(e.target.files[0])} 
                 required 
             /></div> 
-            <Link to='/'>
+            
             <div className='flex space-x-2'>
             <button className='mt-8 mx-3 flex items-center justify-center bg-green-900 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded' type="submit" >Create Post</button>
             <button className='mt-8 flex items-center justify-center bg-green-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>Cancel</button>
             </div> 
-            </Link>      
+            
         </form>
         </div>
         </section>
