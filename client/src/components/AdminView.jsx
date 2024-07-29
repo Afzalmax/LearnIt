@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { usePost } from '../hooks/usePost';
 import { useStore } from '../context/Store';
 import './AdminView.css'; // Import your CSS file for styling
-
+import AdNavbar from './AdNavbar'
 const AdminView = () => {
 const apiUrl = import.meta.env.VITE_API_URL;
   const { token } = useStore(state => ({
@@ -41,6 +41,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
   return (
     <div className="admin-view">
+      <AdNavbar/>
       <h1 className="heading">Approved Posts</h1>
       {error && <p className="error">{error}</p>}
       {posts.length > 0 ? (
@@ -57,7 +58,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
             {posts.map(post => (
               <tr key={post._id}>
                 <td>{post.title}</td>
-                <td>{post.CreatedBy.username}</td>
+                <td>{post.CreatedBy?.username||'admin'}</td>
                 <td>{new Date(post.date).toLocaleDateString()}</td>
                 <td>
                   <button

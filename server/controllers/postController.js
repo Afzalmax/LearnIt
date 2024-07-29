@@ -154,3 +154,27 @@ exports.rejectPost = async (req, res) => {
         res.status(500).json({ message: 'Error rejecting post' });
     }
 };
+exports.adminCreatePost = async (req, res) => {
+    try {
+        const { title, description } = req.body;
+
+        // Check if the user is an admin
+        if (!req.user || !req.user.isAdmin) {
+            return res.status(403).json({ message: 'Forbidden: Admin access required' });
+        }
+
+        const newPost = new post({
+            title,
+            description,
+            image: req.file.path,   
+            CreatedBy: req.user.id,
+            status: 'approved'
+        });
+
+        await newPost.save();
+        res.status(201).json({ message: 'Post created and approved successfully' });
+    } catch (error) {
+        console.error('Error creating post:', error.message);
+        res.status(500).json({ message: error.message });
+    }
+};

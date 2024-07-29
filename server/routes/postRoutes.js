@@ -12,5 +12,5 @@ router.delete('/delete/:id',adminMiddleware,postController.deletePost);
 router.put('/approve/:id', adminMiddleware, postController.approvePost);
 router.get('/pendingposts', adminMiddleware, postController.getPendingPosts);
 router.delete('/reject/:id', adminMiddleware, postController.rejectPost);
-// router.put('/editpost/:id',authMiddleware, upload.single('image'), postController.editPost);
+router.post('/adminpost',adminMiddleware,upload.single('image'),postController.adminCreatePost)
 module.exports = router;

@@ -53,9 +53,9 @@ export const usePost = () => {
     }
   };
   
-  const deletePost = async (id) => {
+  const deletePost = async (postId) => {
     try {
-      await axios.delete(`${apiURL}/posts/${id}`, {
+      await axios.delete(`${apiUrl}/api/posts/delete/${postId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
     } catch (error) {
@@ -75,7 +75,17 @@ export const usePost = () => {
       console.log(error);
     }
   };
+  const adminCreatePost = async (formData) => {
+    const config = {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token}`,
+        },
+    };
 
-  return { post,getPosts, approvePost, rejectPost,deletePost };
+    const response = await axios.post(`${apiUrl}/api/posts/adminpost`, formData, config);
+    return response.data;
+};
+  return { post,getPosts, approvePost, rejectPost,deletePost,adminCreatePost};
 };
   

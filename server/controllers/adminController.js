@@ -1,9 +1,7 @@
 const Admin = require('../models/Admin');
 const bcrypt = require('bcrypt');
 const tokenGenerator = require('../utils/tokenGenerator');
-const Post = require('../models/post');
-const path = require('path');
-const fs = require('fs');
+
 
 exports.createAdmin = async (req, res) => {
     try {
@@ -30,28 +28,24 @@ exports.loginAdmin = async (req, res) => {
     const { username, password } = req.body;
 
     try {
-        // Fetch user from the database
         const admin = await Admin.findOne({ username });
         if (!admin) {
-            console.log('Admin not found');
             return res.status(401).json({ message: 'Invalid username or password' });
         }
 
-        // Compare the provided password with the stored hashed password
         const passwordMatch = await bcrypt.compare(password, admin.password);
         if (!passwordMatch) {
-            console.log('Password does not match');
             return res.status(401).json({ message: 'Invalid username or password' });
         }
 
-        // Generate token if the password matches
         const token = tokenGenerator(admin._id);
-        return res.status(200).json({ token });
+        return res.status(200).json({ token, admin });
     } catch (error) {
         console.error('Error during login:', error.message);
         res.status(500).json({ message: error.message });
     }
 };
+
 
 exports.getAdmin = async (req, res) => {
     try {

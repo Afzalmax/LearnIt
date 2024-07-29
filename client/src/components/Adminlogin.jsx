@@ -15,56 +15,47 @@ const Adminlogin = () => {
     const response = await adminLogin(username, password);
     if (response) {
       setToken(response.token);
-      setAdmin(response.user);
+      setAdmin(response.admin);
       navigate('/dashboard'); // Adjust the route as needed
     }
   };
 
   return (
-    <>
-      <div className='flex flex-col gap-[29px] mt-[30px]'></div>
-      <form onSubmit={handleSubmit}>
-        <div className="flex items-center justify-center h-screen w-full px-5 sm:px-0">
-          <div className="flex bg-white rounded-lg shadow-lg border overflow-hidden max-w-sm lg:max-w-4xl w-full">
-            <div className="hidden md:block lg:w-1/2 bg-cover bg-green-900"></div>
-            <div className="w-full p-8 lg:w-1/2">
-              <p className="text-xl text-green-900 text-center">Welcome back!</p>
-              <div className="mt-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                  Username
-                </label>
-                <input
-                  className="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700"
-                  type="text"
-                  required
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
+    <form onSubmit={handleSubmit}>
+      <div className="flex items-center justify-center h-screen w-full px-5 sm:px-0">
+        <div className="flex bg-white rounded-lg shadow-lg border overflow-hidden max-w-sm lg:max-w-4xl w-full">
+          <div className="hidden md:block lg:w-1/2 bg-cover bg-green-900"></div>
+          <div className="w-full p-8 lg:w-1/2">
+            <p className="text-xl text-green-900 text-center">Welcome back!</p>
+            <div className="mt-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">Username</label>
+              <input
+                className="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700"
+                type="text"
+                required
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            <div className="mt-4 flex flex-col justify-between">
+              <div className="flex justify-between">
+                <label className="block text-gray-700 text-sm font-bold mb-2">Password</label>
               </div>
-              <div className="mt-4 flex flex-col justify-between">
-                <div className="flex justify-between">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Password
-                  </label>
-                </div>
-                <input
-                  className="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700"
-                  type="password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-              <div className="mt-8">
-                <button className="bg-green-900 text-white font-bold py-2 px-4 w-full rounded hover:bg-green-900">
-                  Login
-                </button>
-              </div>
+              <input
+                className="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700"
+                type="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div className="mt-8">
+              <button className="bg-green-900 text-white font-bold py-2 px-4 w-full rounded hover:bg-green-900">Login</button>
             </div>
           </div>
         </div>
-      </form>
-    </>
+      </div>
+    </form>
   );
 };
 

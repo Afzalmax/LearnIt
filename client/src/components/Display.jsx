@@ -24,7 +24,7 @@ const Display = () => {
   }, []);
 
   useEffect(() => {
-    filterPosts(searchQuery);
+    filterPosts();
   }, [searchQuery, posts, currentPage]);
 
   useEffect(() => {
@@ -70,12 +70,12 @@ const Display = () => {
     setCurrentPage(1); // Reset to first page on search
   };
 
-  const filterPosts = (query) => {
+  const filterPosts = () => {
     let filtered = posts;
-    if (query) {
+    if (searchQuery) {
       filtered = posts.filter(post =>
-        post.title.toLowerCase().includes(query.toLowerCase()) ||
-        post.CreatedBy.username.toLowerCase().includes(query.toLowerCase())
+        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (post.CreatedBy?.username?.toLowerCase() || 'admin').includes(searchQuery.toLowerCase())
       );
     }
     setFilteredPosts(filtered);
@@ -153,7 +153,7 @@ const Display = () => {
                   <li>
                     <div className='left'>
                       <h3>
-                        <span className='username'>POST BY: {post.CreatedBy.username}</span>
+                        <span className='username'>POST BY: {post.CreatedBy?.username || 'admin'}</span>
                       </h3>
                       <h3 className='title text-green-900'>SUBJECT: {post.title}</h3>
                       <p className='text-md font-semibold mt-2'>
@@ -166,7 +166,7 @@ const Display = () => {
                     </div>
                     <div className='right'>
                       <img
-                        src={previews[post._id] || `${apiUrl}/${post.image}`||fallbackImage}
+                        src={previews[post._id] || `${apiUrl}/${post.image}` || fallbackImage}
                         alt={post.title}
                         className="image"
                         onClick={() => window.open(`${apiUrl}/${post.image}`)}

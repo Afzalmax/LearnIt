@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { usePost } from '../hooks/usePost';
-import { saveAs } from 'file-saver';
 import './AdminDashboard.css';
-import Navbar from './Navbar';
+import AdNavbar from './AdNavbar';
 import fallbackImage from '../assets/pdf.png'; // Fallback image
 import * as pdfjsLib from 'pdfjs-dist/webpack';
 
@@ -99,8 +98,9 @@ const AdminDashboard = () => {
   };
 
   return (
+    
     <div className='bg-peach'>
-      <Navbar />
+      <AdNavbar/>
       <p className="heading text-green-900">Admin Dashboard</p>
       <div className="container mx-auto p-4">
         {pendingPosts.length > 0 ? (

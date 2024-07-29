@@ -14,29 +14,25 @@ export const useLogin = () => {
         setToken(response.data.token);
         setUser(response.data.user);
       }
-      console.log(response.data);
       return response.data;
     } catch (error) {
       console.log(error);
     }
   }
 
+  
   const adminLogin = async (username, password) => {
     try {
-      const response = await axios.post(`${apiURL}/api/admin/login`, {
-        username,
-        password
-      });
-      if (response.data.token && response.data.user) {
+      const response = await axios.post(`${apiURL}/api/admin/login`, { username, password });
+      if (response.data.token && response.data.admin) {
         setToken(response.data.token);
-        setAdmin(response.data.user);
+        setAdmin(response.data.admin);
       }
-      console.log(response.data);
       return response.data;
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   return { login, adminLogin };
-}
+};
