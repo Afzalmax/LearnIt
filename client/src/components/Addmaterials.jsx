@@ -8,6 +8,7 @@ const Addmaterials = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [image, setImage] = useState(null);
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();

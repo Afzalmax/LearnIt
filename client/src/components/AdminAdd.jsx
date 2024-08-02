@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { usePost } from '../hooks/usePost';
 import AdNavbar from './AdNavbar';
-
+import { Link } from 'react-router-dom';
 const AdminAddPost = () => {
     const { adminCreatePost } = usePost();
     const [title, setTitle] = useState('');
