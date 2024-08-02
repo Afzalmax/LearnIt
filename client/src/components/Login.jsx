@@ -79,6 +79,13 @@ function Login() {
               Don&apos;t have any account yet?
               <span className="text-green-900"> Sign Up</span>
             </Link>
+            <Link
+              to="/adminlogin"
+              className="text-xs text-gray-500 capitalize text-center w-full"
+            >
+              Admin Login?
+              <span className="text-green-900"> Click Here</span>
+            </Link>
           </div>
         </div>
       </div>
