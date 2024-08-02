@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { usePost } from '../hooks/usePost'; 
-import {useNavigate} from 'react-router-dom'
+import {useNavigate,Link} from 'react-router-dom'
 import Navbar from './Navbar';
 const Addmaterials = () => {
     const navigate = useNavigate();
