@@ -52,7 +52,7 @@ const Addmaterials = () => {
             <div className='flex space-x-2'>
             <button className='mt-8 mx-3 flex items-center justify-center bg-green-900 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded' type="submit" >Create Post</button>
             <Link to='/'>
-            <button className='mt-8 flex items-center justify-center bg-green-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>Cancel</button>
+            <a className='mt-8 flex items-center justify-center bg-green-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>Cancel</a>
             </Link>
             </div> 
             
