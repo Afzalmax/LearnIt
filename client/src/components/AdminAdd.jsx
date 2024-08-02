@@ -73,7 +73,9 @@ const AdminAddPost = () => {
                     </div>
                     <div className='flex space-x-2'>
             <button className='mt-8 mx-3 flex items-center justify-center bg-green-900 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded' type="submit"  disabled={isSending}>Create Post</button>
+            <Link to='/dashboard'>
             <button className='mt-8 flex items-center justify-center bg-green-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>Cancel</button>
+            </Link>
             </div>
                 </form>
             </div>
