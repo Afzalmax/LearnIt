@@ -7,6 +7,7 @@ const AdminAddPost = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [image, setImage] = useState(null);
+    const [isSending, setIsSending] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -16,12 +17,15 @@ const AdminAddPost = () => {
         formData.append('image', image);
 
         try {
+            setIsSending(true);
             await adminCreatePost(formData);
             alert('Post created and approved successfully');
             setTitle('');
             setDescription('');
             setImage(null);
+            setIsSending(false);
         } catch (error) {
+            setIsSending(false);
             console.error('Error creating post:', error);
             alert('Error creating post');
         }
@@ -68,7 +72,7 @@ const AdminAddPost = () => {
                         />
                     </div>
                     <div className='flex space-x-2'>
-            <button className='mt-8 mx-3 flex items-center justify-center bg-green-900 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded' type="submit" >Create Post</button>
+            <button className='mt-8 mx-3 flex items-center justify-center bg-green-900 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded' type="submit"  disabled={isSending}>Create Post</button>
             <button className='mt-8 flex items-center justify-center bg-green-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>Cancel</button>
             </div>
                 </form>
